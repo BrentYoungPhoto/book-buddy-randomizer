@@ -17,7 +17,7 @@ interface LoadingStateProps {
 const LoadingState = ({ cachedBooks, lastSelected, getRandomBook, offlineMode }: LoadingStateProps) => {
   if (cachedBooks.length > 0 && lastSelected) {
     return (
-      <div className="min-h-screen bg-cream py-12 px-4">
+      <div className="min-h-screen bg-cream dark:bg-background py-12 px-4 transition-colors duration-200">
         <div className="max-w-6xl mx-auto space-y-4">
           <Header />
           
@@ -31,7 +31,7 @@ const LoadingState = ({ cachedBooks, lastSelected, getRandomBook, offlineMode }:
             <div className="mt-8">
               <BookCard book={lastSelected} />
               <div className="text-center mt-4">
-                <p className="text-muted-foreground text-sm">Showing cached data while loading...</p>
+                <p className="text-muted-foreground dark:text-gray-400 text-sm">Showing cached data while loading...</p>
               </div>
             </div>
           )}
@@ -43,8 +43,8 @@ const LoadingState = ({ cachedBooks, lastSelected, getRandomBook, offlineMode }:
   }
   
   return (
-    <div className="min-h-screen bg-cream py-12 px-4 flex items-center justify-center">
-      <p className="text-lg text-muted-foreground">Loading books...</p>
+    <div className="min-h-screen bg-cream dark:bg-background py-12 px-4 flex items-center justify-center transition-colors duration-200">
+      <p className="text-lg text-muted-foreground dark:text-gray-300">Loading books...</p>
     </div>
   );
 };

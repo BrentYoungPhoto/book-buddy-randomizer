@@ -110,7 +110,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cream py-12 px-4">
+    <div className="min-h-screen bg-cream dark:bg-background py-12 px-4 transition-colors duration-200">
       <div className="max-w-6xl mx-auto space-y-4">
         <Header />
 

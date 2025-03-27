@@ -1,3 +1,4 @@
+
 import { Book } from "../types/book";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
@@ -24,20 +25,20 @@ const BookCard = ({ book }: BookCardProps) => {
           
           <div className="space-y-4">
             <div>
-              <h2 className="text-2xl font-serif font-bold text-navy">{book.title}</h2>
-              <p className="text-lg text-muted-foreground">by {book.author}</p>
+              <h2 className="text-2xl font-serif font-bold text-navy dark:text-white">{book.title}</h2>
+              <p className="text-lg text-muted-foreground dark:text-gray-300">by {book.author}</p>
             </div>
             
             <div>
-              <h3 className="font-serif font-bold text-lg text-navy mb-2">Review</h3>
-              <p className="text-muted-foreground leading-relaxed">{book.review}</p>
+              <h3 className="font-serif font-bold text-lg text-navy dark:text-white mb-2">Review</h3>
+              <p className="text-muted-foreground dark:text-gray-300 leading-relaxed">{book.review}</p>
             </div>
             
             <div>
-              <h3 className="font-serif font-bold text-lg text-navy mb-2">Key Takeaways</h3>
+              <h3 className="font-serif font-bold text-lg text-navy dark:text-white mb-2">Key Takeaways</h3>
               <ul className="list-disc list-inside space-y-2">
                 {book.keyTakeaways.map((takeaway, index) => (
-                  <li key={index} className="text-muted-foreground">
+                  <li key={index} className="text-muted-foreground dark:text-gray-300">
                     {takeaway}
                   </li>
                 ))}

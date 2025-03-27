@@ -13,7 +13,7 @@ const Header = () => {
         alt="Book Buddy Logo"
         className="h-64 md:h-80 w-auto object-contain mx-auto animate-fade-in"
       />
-      <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <p className="text-lg text-muted-foreground max-w-2xl mx-auto dark:text-gray-300">
         Discover life-changing books from my personal reading journey, curated with detailed reviews and key insights.
       </p>
     </div>
