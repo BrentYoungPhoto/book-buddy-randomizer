@@ -4,7 +4,7 @@ import DarkModeToggle from "./DarkModeToggle";
 
 const Header = () => {
   return (
-    <div className="text-center space-y-2">
+    <div className="text-center space-y-2 pt-4">
       <div className="flex justify-end mb-4">
         <DarkModeToggle />
       </div>
