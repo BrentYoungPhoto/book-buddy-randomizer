@@ -1,9 +1,13 @@
 
 import React from "react";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Header = () => {
   return (
     <div className="text-center space-y-2">
+      <div className="flex justify-end mb-4">
+        <DarkModeToggle />
+      </div>
       <img 
         src="https://media.publit.io/file/background-removed-image-HgqIrUwdQi2GjJKRGGaLTA-1.png"
         alt="Book Buddy Logo"

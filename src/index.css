@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap');
 
 @tailwind base;
@@ -36,6 +37,36 @@
  
     --radius: 0.75rem;
   }
+  
+  .dark {
+    --background: 215 50% 10%;
+    --foreground: 36 33% 97%;
+
+    --card: 215 50% 12%;
+    --card-foreground: 36 33% 97%;
+ 
+    --popover: 215 50% 12%;
+    --popover-foreground: 36 33% 97%;
+ 
+    --primary: 36 33% 97%;
+    --primary-foreground: 215 50% 23%;
+ 
+    --secondary: 215 45% 20%;
+    --secondary-foreground: 36 33% 97%;
+ 
+    --muted: 215 45% 20%;
+    --muted-foreground: 36 25% 80%;
+ 
+    --accent: 215 45% 20%;
+    --accent-foreground: 36 33% 97%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 45% 20%;
+    --input: 215 45% 20%;
+    --ring: 36 33% 97%;
+  }
 }
  
 @layer base {
@@ -43,7 +74,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-cream text-navy font-sans;
+    @apply bg-cream text-navy font-sans dark:bg-background dark:text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
@@ -55,5 +86,13 @@
   background-image: 
     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
     linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .book-card {
+  background-color: hsl(215 50% 12%);
+  background-image: 
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 20px 20px;
 }
