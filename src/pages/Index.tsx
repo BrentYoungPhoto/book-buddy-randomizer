@@ -1,14 +1,17 @@
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import BookCard from "@/components/BookCard";
 import { Book } from "@/types/book";
-import { Shuffle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import { saveToLocalCache, getFromLocalCache } from "@/utils/offlineCache";
 import { toast } from "sonner";
+import BookCard from "@/components/BookCard";
+import Header from "@/components/Header";
+import RandomBookButton from "@/components/RandomBookButton";
+import OfflineNotice from "@/components/OfflineNotice";
+import Footer from "@/components/Footer";
+import LoadingState from "@/components/LoadingState";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
 const Index = () => {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -93,109 +96,31 @@ const Index = () => {
 
   if (isLoading) {
     const localCache = getFromLocalCache();
-    if (localCache && localCache.books.length > 0) {
-      return (
-        <div className="min-h-screen bg-cream py-12 px-4">
-          <div className="max-w-6xl mx-auto space-y-4">
-            <img 
-              src="https://media.publit.io/file/background-removed-image-HgqIrUwdQi2GjJKRGGaLTA-1.png"
-              alt="Book Buddy Logo"
-              className="h-64 md:h-80 w-auto object-contain mx-auto animate-fade-in"
-            />
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover life-changing books from my personal reading journey, curated with detailed reviews and key insights.
-            </p>
-            
-            <Button
-              size="lg"
-              onClick={getRandomBook}
-              className="bg-navy hover:bg-navy/90 text-white mt-2"
-              disabled={books.length === 0}
-            >
-              <Shuffle className="mr-2 h-5 w-5" />
-              Get Random Book
-            </Button>
-            
-            {offlineMode && (
-              <div className="mt-2">
-                <p className="text-sm text-amber-600">
-                  You're currently offline. Some features may be limited.
-                </p>
-              </div>
-            )}
-            
-            {localCache.lastSelected && (
-              <div className="mt-8">
-                <BookCard book={localCache.lastSelected} />
-                <div className="text-center mt-4">
-                  <p className="text-muted-foreground text-sm">Showing cached data while loading...</p>
-                </div>
-              </div>
-            )}
-            
-            <footer className="pt-8 mt-16 border-t border-gold/20 space-y-2">
-              <div className="flex items-center justify-center gap-4">
-                <a 
-                  href="https://shor.by/DuKW" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-navy/70 hover:text-navy transition-colors inline-flex items-center gap-1"
-                >
-                  @RealBrentYoung
-                </a>
-                <span className="text-navy/30">•</span>
-                <a 
-                  href="https://buymeacoffee.com/realbrentyoung" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-navy/70 hover:text-navy transition-colors inline-flex items-center gap-1"
-                >
-                  Buy Me a Coffee
-                </a>
-              </div>
-            </footer>
-          </div>
-        </div>
-      );
-    }
+    const cachedBooks = localCache?.books || [];
+    const lastSelected = localCache?.lastSelected || null;
     
     return (
-      <div className="min-h-screen bg-cream py-12 px-4 flex items-center justify-center">
-        <p className="text-lg text-muted-foreground">Loading books...</p>
-      </div>
+      <LoadingState 
+        cachedBooks={cachedBooks} 
+        lastSelected={lastSelected} 
+        getRandomBook={getRandomBook} 
+        offlineMode={offlineMode} 
+      />
     );
   }
 
   return (
     <div className="min-h-screen bg-cream py-12 px-4">
       <div className="max-w-6xl mx-auto space-y-4">
-        <div className="text-center space-y-2">
-          <img 
-            src="https://media.publit.io/file/background-removed-image-HgqIrUwdQi2GjJKRGGaLTA-1.png"
-            alt="Book Buddy Logo"
-            className="h-64 md:h-80 w-auto object-contain mx-auto animate-fade-in"
+        <Header />
+
+        <div className="text-center">
+          <RandomBookButton 
+            onClick={getRandomBook} 
+            disabled={books.length === 0} 
           />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover life-changing books from my personal reading journey, curated with detailed reviews and key insights.
-          </p>
           
-          <Button
-            size="lg"
-            onClick={getRandomBook}
-            className="bg-navy hover:bg-navy/90 text-white mt-2"
-            disabled={books.length === 0}
-          >
-            <Shuffle className="mr-2 h-5 w-5" />
-            Get Random Book
-          </Button>
-          
-          {offlineMode && (
-            <div className="mt-2">
-              <p className="text-sm text-amber-600">
-                You're currently offline. Some features may be limited.
-              </p>
-            </div>
-          )}
+          {offlineMode && <OfflineNotice />}
         </div>
 
         {selectedBook && (
@@ -204,27 +129,7 @@ const Index = () => {
           </div>
         )}
 
-        <footer className="pt-8 mt-16 border-t border-gold/20 space-y-2">
-          <div className="flex items-center justify-center gap-4">
-            <a 
-              href="https://shor.by/DuKW" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-navy/70 hover:text-navy transition-colors inline-flex items-center gap-1"
-            >
-              @RealBrentYoung
-            </a>
-            <span className="text-navy/30">•</span>
-            <a 
-              href="https://buymeacoffee.com/realbrentyoung" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-navy/70 hover:text-navy transition-colors inline-flex items-center gap-1"
-            >
-              Buy Me a Coffee
-            </a>
-          </div>
-        </footer>
+        <Footer />
       </div>
       
       <PWAInstallPrompt />
