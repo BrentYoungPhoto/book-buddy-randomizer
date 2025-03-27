@@ -1,0 +1,7 @@
+
+<!-- This is a placeholder. Replace with a real 192x192 PNG file -->
+<!-- For testing purposes, we're using an SVG file with the .png extension -->
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" fill="#F4EFE3"/>
+  <text x="96" y="96" font-family="Arial" font-size="24" fill="#25476B" text-anchor="middle" dominant-baseline="middle">Book Buddy</text>
+</svg>
