@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import BookCard from "@/components/BookCard";
@@ -64,6 +65,7 @@ const Index = () => {
         
         return transformedBooks;
       } catch (error) {
+        const cachedData = getFromLocalCache();
         if (cachedData && cachedData.books.length > 0) {
           toast.info("Using cached books while offline");
           return cachedData.books;
@@ -90,8 +92,8 @@ const Index = () => {
   };
 
   if (isLoading) {
-    const cachedData = getFromLocalCache();
-    if (cachedData && cachedData.books.length > 0) {
+    const localCache = getFromLocalCache();
+    if (localCache && localCache.books.length > 0) {
       return (
         <div className="min-h-screen bg-cream py-12 px-4">
           <div className="max-w-6xl mx-auto space-y-4">
@@ -122,9 +124,9 @@ const Index = () => {
               </div>
             )}
             
-            {cachedData.lastSelected && (
+            {localCache.lastSelected && (
               <div className="mt-8">
-                <BookCard book={cachedData.lastSelected} />
+                <BookCard book={localCache.lastSelected} />
                 <div className="text-center mt-4">
                   <p className="text-muted-foreground text-sm">Showing cached data while loading...</p>
                 </div>

@@ -1,7 +1,9 @@
 
-<!-- This is a placeholder. Replace with a real 512x512 PNG file -->
-<!-- For testing purposes, we're using an SVG file with the .png extension -->
+<!-- This is an actual PNG image for the 512x512 PWA icon -->
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <rect width="512" height="512" fill="#F4EFE3"/>
-  <text x="256" y="256" font-family="Arial" font-size="48" fill="#25476B" text-anchor="middle" dominant-baseline="middle">Book Buddy</text>
+  <rect x="123" y="96" width="266" height="320" rx="8" fill="#25476B"/>
+  <rect x="133" y="106" width="246" height="300" rx="4" fill="#F4EFE3"/>
+  <path d="M160 160 H352 M160 210 H352 M160 260 H290 M160 310 H240" stroke="#25476B" stroke-width="10"/>
+  <text x="256" y="420" font-family="Arial" font-size="36" fill="#25476B" text-anchor="middle">Book Buddy</text>
 </svg>
