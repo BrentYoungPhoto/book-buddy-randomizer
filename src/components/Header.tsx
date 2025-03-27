@@ -9,7 +9,7 @@ const Header = () => {
         <DarkModeToggle />
       </div>
       <img 
-        src="https://media.publit.io/file/background-removed-image-HgqIrUwdQi2GjJKRGGaLTA-1.png"
+        src="https://media.publit.io/file/Book-Buuddy-Logo-600.png"
         alt="Book Buddy Logo"
         className="h-64 md:h-80 w-auto object-contain mx-auto animate-fade-in"
       />
